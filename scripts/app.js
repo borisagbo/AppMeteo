@@ -1,6 +1,11 @@
 // Key  : dac8cd8abf90c2565292a581ea165b9b
 
 let villeChoisie;
+function searchPosition() {
+  villeChoisie = prompt("Quelle ville souhaitez-vous voir ?")
+      recevoirTemperature(villeChoisie)
+
+}
 
 if ("geolocation" in navigator) {
   navigator.geolocation.watchPosition(
@@ -55,8 +60,7 @@ if ("geolocation" in navigator) {
 
 let changerDeVille = document.querySelector("#changer");
 changerDeVille.addEventListener("click", () => {
-  villeChoisie = prompt("Quelle ville souhaitez-vous voir ?");
-  recevoirTemperature(villeChoisie);
+  searchPosition()
 });
 
 function erreur() {
@@ -93,7 +97,10 @@ function recevoirTemperature(ville) {
         document.querySelector("#wind").textContent = windSpeed;
         document.querySelector("#feels").textContent = feels;
       } else {
-        alert("Un problème est intervenu, merci de revenir plus tard.");
+        if(confirm("La ville que vous avez saisi n'as pas étés retrouver veiller resaisir à nouveau")===true){
+       searchPosition()
+        }
+
       }
     }
   };
