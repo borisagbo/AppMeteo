@@ -2,8 +2,6 @@
 
 let villeChoisie;
 function searchPosition() {
-  villeChoisie = prompt("Quelle ville souhaitez-vous voir ?")
-      recevoirTemperature(villeChoisie)
 
 }
 
@@ -60,7 +58,8 @@ if ("geolocation" in navigator) {
 
 let changerDeVille = document.querySelector("#changer");
 changerDeVille.addEventListener("click", () => {
-  searchPosition()
+  villeChoisie = prompt("Quelle ville souhaitez-vous voir ?");
+  recevoirTemperature(villeChoisie);
 });
 
 function erreur() {
@@ -98,7 +97,8 @@ function recevoirTemperature(ville) {
         document.querySelector("#feels").textContent = feels;
       } else {
         if(confirm("La ville que vous avez saisi n'as pas étés retrouver veiller resaisir à nouveau")===true){
-       searchPosition()
+          villeChoisie = prompt("Quelle ville souhaitez-vous voir ?");
+          recevoirTemperature(villeChoisie);
         }
 
       }
